@@ -26,6 +26,41 @@ class School_Portal():
       self.label1.grid(row=8, column=0)
 
 
+      #------------New Record-------------
+      frame =LabelFrame(self.root,text='Add New Record')
+      frame.grid(row=0,column=1)
+
+      Label(frame,text='Firstname:').grid(row=1,column=1,sticky=W)
+      self.firstname =Entry(frame)
+      self.firstname.grid(row=1,column=2)
+
+      Label(frame,text='Lastname:').grid(row=2, column=1, sticky=W)
+      self.lastname =Entry(frame)
+      self.lastname.grid(row=2,column=2)
+
+      Label(frame, text='Username:').grid(row=3, column=1, sticky=W)
+      self.username = Entry(frame)
+      self.username.grid(row=3, column=2)
+
+      Label(frame, text='Email:').grid(row=4, column=1, sticky=W)
+      self.email = Entry(frame)
+      self.email.grid(row=4, column=2)
+
+      Label(frame, text='Subject:').grid(row=5, column=1, sticky=W)
+      self.subject = Entry(frame)
+      self.subject.grid(row=5, column=2)
+
+      Label(frame, text='Age:').grid(row=6, column=1, sticky=W)
+      self.email = Entry(frame)
+      self.email.grid(row=6, column=2)
+
+      #------------Add Button---------------
+      ttk.Button(frame,text='Add Record',command = self.add).grid(row=7,column=2)
+
+      #------------Message Display------------------
+      self.message = Label(text='',fg='red')
+      self.message.grid(row=8,column=1)
+
       #-----------------Menu Bar-----------------------
       Chooser = Menu()
       itemone = Menu()
