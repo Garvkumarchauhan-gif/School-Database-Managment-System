@@ -153,7 +153,18 @@ class School_Portal():
        de = tkinter.messagebox.askquestion('Delete Record', 'Want to Delete a Record?')
        if de == 'yes':
           self.delete_record()
+      #----------------Time & Date---------------------
+      def tick():
+          d = datetime.datetime.now()
+          Today = '{:%B %d,%Y}'.format(d)
 
+          mytime = time.strftime('%I:%M:%S%p')
+          self.lblInfo.config(text= (mytime+'\t'+Today))
+          self.lblInfo.after(200, tick)
+
+      self.lblInfo= Label(font=('arial',20,'bold'),fg='dark blue')
+      self.lblInfo.grid(row=10,column=0,columnspan=3)
+      tick()
    #-----------------Edit Record------------------------
    def edit_box(self):
        self.message['text'] = ''
