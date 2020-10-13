@@ -25,7 +25,6 @@ class School_Portal():
       self.label1 = Label(font=('arial', 15, 'bold'), text='School Portal System', fg='dark blue')
       self.label1.grid(row=8, column=0)
 
-
       #------------New Record-------------
       frame =LabelFrame(self.root,text='Add New Record')
       frame.grid(row=0,column=1)
@@ -60,6 +59,37 @@ class School_Portal():
       #------------Message Display------------------
       self.message = Label(text='',fg='red')
       self.message.grid(row=8,column=1)
+
+      #------------Database Table Display Box--------
+      self.tree= ttk.Treeview(height=8,column=['','','','','',''])
+      self.tree.grid(row=9,column=0,columnspan=3)
+      self.tree.heading('#0',text='Id')
+      self.tree.column('#0',width=50)
+      self.tree.heading('#1', text='Firstname')
+      self.tree.column('#1', width=80)
+      self.tree.heading('#2', text='Lastname')
+      self.tree.column('#2', width=80)
+      self.tree.heading('#3', text='Username')
+      self.tree.column('#3', width=80)
+      self.tree.heading('#4', text='Email')
+      self.tree.column('#4', width=120)
+      self.tree.heading('#5', text='Subject')
+      self.tree.column('#5', width=80)
+      self.tree.heading('#6',text='Age')
+      self.tree.column('#6',width=40,stretch=False)
+
+      #----------------Time & Date---------------------
+      def tick():
+          d = datetime.datetime.now()
+          Today = '{:%B %d,%Y}'.format(d)
+
+          mytime = time.strftime('%I:%M:%S%p')
+          self.lblInfo.config(text= (mytime+'\t'+Today))
+          self.lblInfo.after(200, tick)
+
+      self.lblInfo= Label(font=('arial',20,'bold'),fg='dark blue')
+      self.lblInfo.grid(row=10,column=0,columnspan=3)
+      tick()
 
       #-----------------Menu Bar-----------------------
       Chooser = Menu()
@@ -153,18 +183,7 @@ class School_Portal():
        de = tkinter.messagebox.askquestion('Delete Record', 'Want to Delete a Record?')
        if de == 'yes':
           self.delete_record()
-      #----------------Time & Date---------------------
-      def tick():
-          d = datetime.datetime.now()
-          Today = '{:%B %d,%Y}'.format(d)
 
-          mytime = time.strftime('%I:%M:%S%p')
-          self.lblInfo.config(text= (mytime+'\t'+Today))
-          self.lblInfo.after(200, tick)
-
-      self.lblInfo= Label(font=('arial',20,'bold'),fg='dark blue')
-      self.lblInfo.grid(row=10,column=0,columnspan=3)
-      tick()
    #-----------------Edit Record------------------------
    def edit_box(self):
        self.message['text'] = ''
